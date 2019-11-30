@@ -163,6 +163,9 @@ export class HomeComponent implements OnInit {
   counter = 0;
   timersDivStatus = false;
   confrimationMsgStatus = false;
+  eventHeader = "Cricket";
+  mainTable:boolean = true;
+  subTable:boolean = false;
   userId = localStorage.getItem('userId');  
   constructor(private http: HttpClient,private formBuilder:FormBuilder,private fileuploadservice:UploadFileService,private router:Router,private spinner:NgxSpinnerService) { 
     
@@ -334,11 +337,12 @@ export class HomeComponent implements OnInit {
 
   getMatches(matches) {
     this.alive = false;
-    //this.alive1 = false;    
-    
+    this.mainTable = true;
+    this.subTable = false;
+    this.alive1 = false;    
+    this.eventHeader = matches;
     if(matches=="Football")
-        matches = "Soccer";
-     
+        matches = "Soccer";     
     this.alive1 = true;    
     this.sizeDisplay = true;
     this.blankVariables(); 
@@ -1124,6 +1128,35 @@ export class HomeComponent implements OnInit {
       i++;
     });
   }
+
+  getMatcheDetails(matchId) {
+    alert(matchId);
+    this.alive = false;
+    this.mainTable = true;
+    this.subTable = false;
+    this.alive1 = false;    
+    //this.eventHeader = matches;
+    
+    this.alive1 = true;    
+    this.sizeDisplay = true;
+    this.blankVariables(); 
+    this.alive1 = true;  
+    let i = 0;
+    let j = 0;
+    // Observable.timer(0,300)
+    //   .takeWhile(() => this.alive1) // only fires when component is alive
+    //   .subscribe(() => {
+      this.eventNameArr = [];   
+        this.http.get('http://115.124.103.128:5105/getFeed?mid='+matchId+'&type=odds').subscribe((inPlayData:any) => {
+          console.log("get match details=="+JSON.stringify(inPlayData));                  
+          if(inPlayData!=null){
+            //this.marketId_0 = inPlayData.marketId;
+            
+          }
+        });          
+      i++;
+    //});
+  }
   
   getOneClickStatus(e) {
     //alert(e.target.checked);
@@ -1188,6 +1221,7 @@ export class HomeComponent implements OnInit {
     
   }
   ngOnInit() {
+    this.mainTable = true;
     this.betSlipForm = this.formBuilder.group({
       stake: ['',[Validators.required]],
       odds: ['',[Validators.required]],
@@ -1213,11 +1247,12 @@ export class HomeComponent implements OnInit {
       let checkS = localStorage.getItem("betConfrimation");
       this.betConfrimation = JSON.parse(checkS);
     }
+    this.eventHeader = "Cricket";
     //this.oneClickStatus = value; 
     this.sizeDisplay = false;
-      Observable.timer(0,5000)
-      .takeWhile(() => this.alive) // only fires when component is alive
-      .subscribe(() => {
+      // Observable.timer(0,5000)
+      // .takeWhile(() => this.alive) // only fires when component is alive
+      // .subscribe(() => {
       this.eventNameArr = [];
       this.http.get('http://pragati777.com/AllOpenMarketIDs').subscribe((data:any) => {        
         if(data.length>0){
@@ -1702,7 +1737,7 @@ export class HomeComponent implements OnInit {
             }
           }  
        });
-    });
+    //});
     this.http.get('/matieres/getStakes?userId='+this.userId).subscribe((data:any) => {
       console.log("data==="+JSON.stringify(data.result.length));
       if(data.result.length>0){

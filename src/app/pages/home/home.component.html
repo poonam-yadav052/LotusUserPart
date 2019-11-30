@@ -18,9 +18,9 @@
     <!-- mid oane -->
     <div class="mid-pane">
       <div class="Eventdiv">
-          <h1 class="eventHeader">Cricket</h1>          
+          <h1 class="eventHeader">{{eventHeader}}</h1>          
           <div class="EventName" >
-            <table class="table table-border marketListingTable">
+            <table *ngIf="mainTable" class="table table-border marketListingTable">
               <thead class="eventTHead">
                 <th class="eventFirstTh">Match</th>
                 <th colspan="2">1</th>  
@@ -30,7 +30,7 @@
               <tbody class="eventBody">
                 <tr *ngIf="EventName_0!=='0'" role="row" id="tr_0">
                   <td class="evnetFirsttd" id="td_0_0">
-                    <a class="eventA">{{EventName_0}}</a>
+                    <a class="eventA" (click)="getMatcheDetails(marketId_0)">{{EventName_0}}</a>
                     <small class="in-play-content" *ngIf="inPlay_0">
                       <i class="fa fa-play-circle">In-Play</i>
                     </small>
@@ -57,7 +57,7 @@
                 </tr>
                 <tr *ngIf="EventName_1!=='0'" role="row" id="tr_1">
                   <td class="evnetFirsttd" id="td_1_0">
-                    <a class="eventA">{{EventName_1}}</a>
+                    <a class="eventA" (click)="getMatcheDetails(marketId_1)">{{EventName_1}}</a>
                     <small class="in-play-content" *ngIf="inPlay_1">
                       <i class="fa fa-play-circle">In-Play</i>
                     </small>
@@ -84,7 +84,7 @@
                 </tr>
                 <tr *ngIf="EventName_2!=='0'" role="row" id="tr_2">
                   <td class="evnetFirsttd" id="td_2_0">
-                    <a class="eventA">{{EventName_2}}</a>
+                    <a class="eventA" (click)="getMatcheDetails(marketId_2)">{{EventName_2}}</a>
                     <small class="in-play-content" *ngIf="inPlay_2">
                       <i class="fa fa-play-circle">In-Play</i>
                     </small>
@@ -111,7 +111,7 @@
                 </tr>
                 <tr *ngIf="EventName_3!=='0'" role="row" id="tr_3">
                   <td class="evnetFirsttd" id="td_3_0">
-                    <a class="eventA">{{EventName_3}}</a>
+                    <a class="eventA" (click)="getMatcheDetails(marketId_3)">{{EventName_3}}</a>
                     <small class="in-play-content" *ngIf="inPlay_3">
                       <i class="fa fa-play-circle">In-Play</i>
                     </small>
@@ -138,7 +138,7 @@
                 </tr>
                 <tr *ngIf="EventName_4!=='0'" role="row" id="tr_4">
                   <td class="evnetFirsttd" id="td_4_0">
-                    <a class="eventA">{{EventName_4}}</a>
+                    <a class="eventA" (click)="getMatcheDetails(marketId_4)">{{EventName_4}}</a>
                     <small class="in-play-content" *ngIf="inPlay_4">
                       <i class="fa fa-play-circle">In-Play</i>
                     </small>
@@ -165,7 +165,7 @@
                 </tr>
                 <tr *ngIf="EventName_5!=='0'" role="row" id="tr_5">
                   <td class="evnetFirsttd" id="td_5_0">
-                    <a class="eventA">{{EventName_5}}</a>
+                    <a class="eventA" (click)="getMatcheDetails(marketId_5)">{{EventName_5}}</a>
                     <small class="in-play-content" *ngIf="inPlay_5">
                       <i class="fa fa-play-circle">In-Play</i>
                     </small>
@@ -192,7 +192,7 @@
                 </tr>
                 <tr *ngIf="EventName_6!=='0'" role="row" id="tr_6">
                   <td class="evnetFirsttd" id="td_6_0">
-                    <a class="eventA">{{EventName_6}}</a>
+                    <a class="eventA" (click)="getMatcheDetails(marketId_6)">{{EventName_6}}</a>
                     <small class="in-play-content" *ngIf="inPlay_6">
                       <i class="fa fa-play-circle">In-Play</i>
                     </small>
@@ -219,7 +219,7 @@
                 </tr>
                 <tr *ngIf="EventName_7!=='0'" role="row" id="tr_7">
                   <td class="evnetFirsttd" id="td_7_0">
-                    <a class="eventA">{{EventName_7}}</a>
+                    <a class="eventA" (click)="getMatcheDetails(marketId_7)">{{EventName_7}}</a>
                     <small class="in-play-content" *ngIf="inPlay_7">
                       <i class="fa fa-play-circle">In-Play</i>
                     </small>
@@ -246,7 +246,7 @@
                 </tr>
                 <tr *ngIf="EventName_8!=='0'" role="row" id="tr_8">
                   <td class="evnetFirsttd" id="td_8_0">
-                    <a class="eventA">{{EventName_8}}</a>
+                    <a class="eventA" (click)="getMatcheDetails(marketId_8)">{{EventName_8}}</a>
                     <small class="in-play-content" *ngIf="inPlay_8">
                       <i class="fa fa-play-circle">In-Play</i>
                     </small>
@@ -273,7 +273,7 @@
                 </tr>
                 <tr *ngIf="EventName_9!=='0'" role="row" id="tr_9">
                   <td class="evnetFirsttd" id="td_9_0">
-                    <a class="eventA">{{EventName_9}}</a>
+                    <a class="eventA" (click)="getMatcheDetails(marketId_9)">{{EventName_9}}</a>
                     <small class="in-play-content" *ngIf="inPlay_9">
                       <i class="fa fa-play-circle">In-Play</i>
                     </small>
@@ -300,7 +300,7 @@
                 </tr>
                 <tr *ngIf="EventName_10!=='0'" role="row" id="tr_10">
                   <td class="evnetFirsttd" id="td_10_0">
-                    <a class="eventA">{{EventName_10}}</a>
+                    <a class="eventA" (click)="getMatcheDetails(marketId_10)">{{EventName_10}}</a>
                     <small class="in-play-content" *ngIf="inPlay_10">
                       <i class="fa fa-play-circle">In-Play</i>
                     </small>
@@ -327,7 +327,7 @@
                 </tr>
                 <tr *ngIf="EventName_11!=='0'" role="row" id="tr_11">
                   <td class="evnetFirsttd" id="td_11_0">
-                    <a class="eventA">{{EventName_11}}</a>
+                    <a class="eventA" (click)="getMatcheDetails(marketId_11)">{{EventName_11}}</a>
                     <small class="in-play-content" *ngIf="inPlay_11">
                       <i class="fa fa-play-circle">In-Play</i>
                     </small>
@@ -354,7 +354,7 @@
                 </tr>
                 <tr *ngIf="EventName_12!=='0'" role="row" id="tr_12">
                   <td class="evnetFirsttd" id="td_12_0">
-                    <a class="eventA">{{EventName_12}}</a>
+                    <a class="eventA" (click)="getMatcheDetails(marketId_12)">{{EventName_12}}</a>
                     <small class="in-play-content" *ngIf="inPlay_12">
                       <i class="fa fa-play-circle">In-Play</i>
                     </small>
@@ -381,7 +381,7 @@
                 </tr>
                 <tr *ngIf="EventName_13!=='0'" role="row" id="tr_13">
                   <td class="evnetFirsttd" id="td_13_0">
-                    <a class="eventA">{{EventName_13}}</a>
+                    <a class="eventA" (click)="getMatcheDetails(marketId_13)">{{EventName_13}}</a>
                     <small class="in-play-content" *ngIf="inPlay_13">
                       <i class="fa fa-play-circle">In-Play</i>
                     </small>
@@ -408,7 +408,422 @@
                 </tr>
                 <tr *ngIf="EventName_14!=='0'" role="row" id="tr_14">
                   <td class="evnetFirsttd" id="td_14_0">
-                    <a class="eventA">{{EventName_14}}</a>
+                    <a class="eventA" (click)="getMatcheDetails(marketId_14)">{{EventName_14}}</a>
+                    <small class="in-play-content" *ngIf="inPlay_14">
+                      <i class="fa fa-play-circle">In-Play</i>
+                    </small>
+                    <small class="FirstSmall"><time class="eventDate" *ngIf="!inPlay_14">25/11/2019 05:00</time></small>
+                  </td>                    
+                  <td  class="back" id="td_14_1" (click)="addBetSlip('back',backBetPrice_14_1,marketId_14)">
+                    {{backBetPrice_14_1}}<br><span *ngIf="sizeDisplay">{{backBetSize_14_1}}</span>
+                  </td>
+                  <td  class="lay" id="td_14_2" (click)="addBetSlip('lay',layBetPrice_14_1,marketId_14)">
+                    {{layBetPrice_14_1}}<br><span *ngIf="sizeDisplay"> {{layBetSize_14_1}}</span>
+                  </td>
+                  <td  class="back" id="td_14_3" (click)="addBetSlip('back',backBetPrice_14_2,marketId_14)">
+                    {{backBetPrice_14_2}}<br><span *ngIf="sizeDisplay">{{backBetSize_14_2}}</span>
+                  </td>
+                  <td  class="lay" id="td_14_4" (click)="addBetSlip('back',layBetPrice_14_2,marketId_14)">
+                    {{layBetPrice_14_2}}<br><span *ngIf="sizeDisplay"> {{layBetSize_14_2}}</span>
+                  </td>
+                  <td  class="back" id="td_14_5" (click)="addBetSlip('back',backBetPrice_14_3,marketId_14)">
+                    {{backBetPrice_14_3}}<br><span *ngIf="sizeDisplay">{{backBetSize_14_3}}</span>
+                  </td>
+                  <td  class="lay" id="td_14_6" (click)="addBetSlip('back',layBetPrice_14_3,marketId_14)">
+                    {{layBetPrice_14_3}}<br><span *ngIf="sizeDisplay"> {{layBetSize_14_3}}</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table *ngIf="subTable" class="table table-border marketListingTable">
+              <thead class="eventTHead">
+                <th class="eventFirstTh">Match</th>
+                <th colspan="2">1</th>  
+                <th colspan="2">X</th>
+                <th colspan="2">2</th>
+              </thead>
+              <tbody class="eventBody">
+                <tr *ngIf="EventName_0!=='0'" role="row" id="tr_0">
+                  <td class="evnetFirsttd" id="td_0_0">
+                    <a class="eventA" (click)="getMatcheDetails(marketId_0)">{{EventName_0}}</a>
+                    <small class="in-play-content" *ngIf="inPlay_0">
+                      <i class="fa fa-play-circle">In-Play</i>
+                    </small>
+                    <small class="FirstSmall"><time class="eventDate" *ngIf="!inPlay_0">25/11/2019 05:00</time></small>
+                  </td>                    
+                  <td  class="back" id="td_0_1" (click)="addBetSlip('back',backBetPrice_0_1,marketId_0)">
+                    {{backBetPrice_0_1}}<br><span *ngIf="sizeDisplay">{{backBetSize_0_1}}</span>
+                  </td>
+                  <td  class="lay" id="td_0_2" (click)="addBetSlip('lay',layBetPrice_0_1,marketId_0)">
+                    {{layBetPrice_0_1}}<br><span *ngIf="sizeDisplay">{{layBetSize_0_1}}</span>
+                  </td>
+                  <td  class="back" id="td_0_3" (click)="addBetSlip('back',backBetPrice_0_2,marketId_0)">
+                    {{backBetPrice_0_2}}<br><span *ngIf="sizeDisplay">{{backBetSize_0_2}}</span>
+                  </td>
+                  <td  class="lay" id="td_0_4" (click)="addBetSlip('lay',layBetPrice_0_2,marketId_0)">
+                    {{layBetPrice_0_2}}<br><span *ngIf="sizeDisplay">{{layBetSize_0_2}}</span>
+                  </td>
+                  <td  class="back" id="td_0_5" (click)="addBetSlip('back',backBetPrice_0_3,marketId_0)">
+                    {{backBetPrice_0_3}}<br><span *ngIf="sizeDisplay">{{backBetSize_0_3}}</span>
+                  </td>
+                  <td  class="lay" id="td_0_6" (click)="addBetSlip('lay',layBetPrice_0_3,marketId_0)">
+                    {{layBetPrice_0_3}}<br><span *ngIf="sizeDisplay">{{layBetSize_0_3}}</span>
+                  </td>
+                </tr>
+                <tr *ngIf="EventName_1!=='0'" role="row" id="tr_1">
+                  <td class="evnetFirsttd" id="td_1_0">
+                    <a class="eventA" (click)="getMatcheDetails(marketId_1)">{{EventName_1}}</a>
+                    <small class="in-play-content" *ngIf="inPlay_1">
+                      <i class="fa fa-play-circle">In-Play</i>
+                    </small>
+                    <small class="FirstSmall"><time class="eventDate" *ngIf="!inPlay_1">25/11/2019 05:00</time></small>
+                  </td>                    
+                  <td  class="back" id="td_1_1" (click)="addBetSlip('back',backBetPrice_1_1,marketId_1)">
+                    {{backBetPrice_1_1}}<br><span *ngIf="sizeDisplay">{{backBetSize_1_1}}</span>
+                  </td>
+                  <td  class="lay" id="td_1_2" (click)="addBetSlip('lay',layBetPrice_1_1,marketId_1)">
+                    {{layBetPrice_1_1}}<br><span *ngIf="sizeDisplay">{{layBetSize_1_1}}</span>
+                  </td>
+                  <td  class="back" id="td_1_3" (click)="addBetSlip('back',backBetPrice_1_2,marketId_1)">
+                    {{backBetPrice_1_2}}<br><span *ngIf="sizeDisplay">{{backBetSize_1_2}}</span>
+                  </td>
+                  <td  class="lay" id="td_1_4" (click)="addBetSlip('back',layBetPrice_1_2,marketId_1)">
+                    {{layBetPrice_1_2}}<br><span *ngIf="sizeDisplay">{{layBetSize_1_2}}</span>
+                  </td>
+                  <td  class="back" id="td_1_5" (click)="addBetSlip('back',backBetPrice_1_3,marketId_1)">
+                    {{backBetPrice_1_3}}<br><span *ngIf="sizeDisplay">{{backBetSize_1_3}}</span>
+                  </td>
+                  <td  class="lay" id="td_1_6" (click)="addBetSlip('back',layBetPrice_1_3)">
+                    {{layBetPrice_1_3}}<br><span *ngIf="sizeDisplay">{{layBetSize_1_3}}</span>
+                  </td>
+                </tr>
+                <tr *ngIf="EventName_2!=='0'" role="row" id="tr_2">
+                  <td class="evnetFirsttd" id="td_2_0">
+                    <a class="eventA" (click)="getMatcheDetails(marketId_2)">{{EventName_2}}</a>
+                    <small class="in-play-content" *ngIf="inPlay_2">
+                      <i class="fa fa-play-circle">In-Play</i>
+                    </small>
+                    <small class="FirstSmall"><time class="eventDate" *ngIf="!inPlay_2">25/11/2019 05:00</time></small>
+                  </td>                    
+                  <td class="back" id="td_2_1" (click)="addBetSlip('back',backBetPrice_2_1,marketId_2)">
+                    {{backBetPrice_2_1}}<br><span *ngIf="sizeDisplay">{{backBetSize_2_1}}</span>
+                  </td>
+                  <td  class="lay" id="td_2_2" (click)="addBetSlip('lay',layBetPrice_2_1,marketId_2)">
+                    {{layBetPrice_2_1}}<br><span *ngIf="sizeDisplay">{{layBetSize_2_1}}</span>
+                  </td>
+                  <td  class="back" id="td_2_3" (click)="addBetSlip('back',backBetPrice_2_2,marketId_2)">
+                    {{backBetPrice_2_2}}<br><span *ngIf="sizeDisplay">{{backBetSize_2_2}}</span>
+                  </td>
+                  <td  class="lay" id="td_2_4" (click)="addBetSlip('back',layBetPrice_2_2,marketId_2)">
+                    {{layBetPrice_2_2}}<br><span *ngIf="sizeDisplay">{{layBetSize_2_2}}</span>
+                  </td>
+                  <td  class="back" id="td_2_5" (click)="addBetSlip('back',backBetPrice_2_3,marketId_2)">
+                    {{backBetPrice_2_3}}<br><span *ngIf="sizeDisplay">{{backBetSize_2_3}}</span>
+                  </td>
+                  <td  class="lay" id="td_2_6" (click)="addBetSlip('back',layBetPrice_2_3,marketId_2)">
+                    {{layBetPrice_2_3}}<br><span *ngIf="sizeDisplay">{{layBetSize_2_3}}</span>
+                  </td>
+                </tr>
+                <tr *ngIf="EventName_3!=='0'" role="row" id="tr_3">
+                  <td class="evnetFirsttd" id="td_3_0">
+                    <a class="eventA" (click)="getMatcheDetails(marketId_3)">{{EventName_3}}</a>
+                    <small class="in-play-content" *ngIf="inPlay_3">
+                      <i class="fa fa-play-circle">In-Play</i>
+                    </small>
+                    <small class="FirstSmall"><time class="eventDate" *ngIf="!inPlay_3">25/11/2019 05:00</time></small>
+                  </td>                    
+                  <td  class="back" id="td_3_1" (click)="addBetSlip('back',backBetPrice_3_1,marketId_3)">
+                    {{backBetPrice_3_1}}<br><span *ngIf="sizeDisplay">{{backBetSize_3_1}}</span>
+                  </td>
+                  <td  class="lay" id="td_3_2" (click)="addBetSlip('lay',layBetPrice_3_1,marketId_3)">
+                    {{layBetPrice_3_1}}<br><span *ngIf="sizeDisplay">{{layBetSize_3_1}}</span>
+                  </td>
+                  <td  class="back" id="td_3_3" (click)="addBetSlip('back',backBetPrice_3_2,marketId_3)">
+                    {{backBetPrice_3_2}}<br><span *ngIf="sizeDisplay">{{backBetSize_3_2}}</span>
+                  </td>
+                  <td  class="lay" id="td_3_4" (click)="addBetSlip('back',layBetPrice_3_2,marketId_3)">
+                    {{layBetPrice_3_2}}<br><span *ngIf="sizeDisplay">{{layBetSize_3_2}}</span>
+                  </td>
+                  <td  class="back" id="td_3_5" (click)="addBetSlip('back',backBetPrice_3_3,marketId_3)">
+                    {{backBetPrice_3_3}}<br><span *ngIf="sizeDisplay">{{backBetSize_3_3}}</span>
+                  </td>
+                  <td  class="lay" id="td_3_6" (click)="addBetSlip('back',layBetPrice_3_3,marketId_3)">
+                    {{layBetPrice_3_3}}<br><span *ngIf="sizeDisplay">{{layBetSize_3_3}}</span>
+                  </td>
+                </tr>
+                <tr *ngIf="EventName_4!=='0'" role="row" id="tr_4">
+                  <td class="evnetFirsttd" id="td_4_0">
+                    <a class="eventA" (click)="getMatcheDetails(marketId_4)">{{EventName_4}}</a>
+                    <small class="in-play-content" *ngIf="inPlay_4">
+                      <i class="fa fa-play-circle">In-Play</i>
+                    </small>
+                    <small class="FirstSmall"><time class="eventDate" *ngIf="!inPlay_4">25/11/2019 05:00</time></small>
+                  </td>                    
+                  <td  class="back" id="td_4_1" (click)="addBetSlip('back',backBetPrice_4_1,marketId_4)">
+                    {{backBetPrice_4_1}}<br><span *ngIf="sizeDisplay">{{backBetSize_4_1}}</span>
+                  </td>
+                  <td  class="lay" id="td_4_2" (click)="addBetSlip('lay',layBetPrice_4_1,marketId_4)">
+                    {{layBetPrice_4_1}}<br><span *ngIf="sizeDisplay">{{layBetSize_4_1}}</span>
+                  </td>
+                  <td  class="back" id="td_4_3" (click)="addBetSlip('back',backBetPrice_4_2,marketId_4)">
+                    {{backBetPrice_4_2}}<br><span *ngIf="sizeDisplay">{{backBetSize_4_2}}</span>
+                  </td>
+                  <td  class="lay" id="td_4_4" (click)="addBetSlip('back',layBetPrice_4_2,marketId_4)">
+                    {{layBetPrice_4_2}}<br><span *ngIf="sizeDisplay">{{layBetSize_4_2}}</span>
+                  </td>
+                  <td  class="back" id="td_4_5" (click)="addBetSlip('back',backBetPrice_4_3,marketId_4)">
+                    {{backBetPrice_4_3}}<br><span *ngIf="sizeDisplay">{{backBetSize_4_3}}</span>
+                  </td>
+                  <td  class="lay" id="td_4_6" (click)="addBetSlip('back',layBetPrice_4_3,marketId_4)">
+                    {{layBetPrice_4_3}}<br><span *ngIf="sizeDisplay">{{layBetSize_4_3}}</span>
+                  </td>
+                </tr>
+                <tr *ngIf="EventName_5!=='0'" role="row" id="tr_5">
+                  <td class="evnetFirsttd" id="td_5_0">
+                    <a class="eventA" (click)="getMatcheDetails(marketId_5)">{{EventName_5}}</a>
+                    <small class="in-play-content" *ngIf="inPlay_5">
+                      <i class="fa fa-play-circle">In-Play</i>
+                    </small>
+                    <small class="FirstSmall"><time class="eventDate" *ngIf="!inPlay_5">25/11/2019 05:00</time></small>
+                  </td>                    
+                  <td  class="back" id="td_5_1" (click)="addBetSlip('back',backBetPrice_5_1,marketId_5)">
+                    {{backBetPrice_5_1}}<br><span *ngIf="sizeDisplay">{{backBetSize_5_1}}</span>
+                  </td>
+                  <td  class="lay" id="td_5_2" (click)="addBetSlip('lay',layBetPrice_5_1,marketId_5)">
+                    {{layBetPrice_5_1}}<br><span *ngIf="sizeDisplay">{{layBetSize_5_1}}</span>
+                  </td>
+                  <td  class="back" id="td_5_3" (click)="addBetSlip('back',backBetPrice_5_2,marketId_5)">
+                    {{backBetPrice_5_2}}<br><span *ngIf="sizeDisplay">{{backBetSize_5_2}}</span>
+                  </td>
+                  <td  class="lay" id="td_5_4" (click)="addBetSlip('back',layBetPrice_5_2,marketId_5)">
+                    {{layBetPrice_5_2}}<br><span *ngIf="sizeDisplay">{{layBetSize_5_2}}</span>
+                  </td>
+                  <td  class="back" id="td_5_5" (click)="addBetSlip('back',backBetPrice_5_3,marketId_5)">
+                    {{backBetPrice_5_3}}<br><span *ngIf="sizeDisplay">{{backBetSize_5_3}}</span>
+                  </td>
+                  <td  class="lay" id="td_5_6" (click)="addBetSlip('back',layBetPrice_5_3,marketId_5)">
+                    {{layBetPrice_5_3}}<br><span *ngIf="sizeDisplay">{{layBetSize_5_3}}</span>
+                  </td>
+                </tr>
+                <tr *ngIf="EventName_6!=='0'" role="row" id="tr_6">
+                  <td class="evnetFirsttd" id="td_6_0">
+                    <a class="eventA" (click)="getMatcheDetails(marketId_6)">{{EventName_6}}</a>
+                    <small class="in-play-content" *ngIf="inPlay_6">
+                      <i class="fa fa-play-circle">In-Play</i>
+                    </small>
+                    <small class="FirstSmall"><time class="eventDate" *ngIf="!inPlay_6">25/11/2019 05:00</time></small>
+                  </td>                    
+                  <td  class="back" id="td_6_1" (click)="addBetSlip('back',backBetPrice_6_1,marketId_6)">
+                    {{backBetPrice_6_1}}<br><span *ngIf="sizeDisplay">{{backBetSize_6_1}}</span>
+                  </td>
+                  <td  class="lay" id="td_6_2" (click)="addBetSlip('lay',layBetPrice_6_1,marketId_6)">
+                    {{layBetPrice_6_1}}<br><span *ngIf="sizeDisplay">{{layBetSize_6_1}}</span>
+                  </td>
+                  <td  class="back" id="td_6_3" (click)="addBetSlip('back',backBetPrice_6_2,marketId_6)">
+                    {{backBetPrice_6_2}}<br><span *ngIf="sizeDisplay">{{backBetSize_6_2}}</span>
+                  </td>
+                  <td  class="lay" id="td_6_4" (click)="addBetSlip('back',layBetPrice_6_2,marketId_6)">
+                    {{layBetPrice_6_2}}<br><span *ngIf="sizeDisplay">{{layBetSize_6_2}}</span>
+                  </td>
+                  <td  class="back" id="td_6_5" (click)="addBetSlip('back',backBetPrice_6_3,marketId_6)">
+                    {{backBetPrice_6_3}}<br><span *ngIf="sizeDisplay">{{backBetSize_6_3}}</span>
+                  </td>
+                  <td  class="lay" id="td_6_6" (click)="addBetSlip('back',layBetPrice_6_3,marketId_6)">
+                    {{layBetPrice_6_3}}<br><span *ngIf="sizeDisplay">{{layBetSize_6_3}}</span>
+                  </td>
+                </tr>
+                <tr *ngIf="EventName_7!=='0'" role="row" id="tr_7">
+                  <td class="evnetFirsttd" id="td_7_0">
+                    <a class="eventA" (click)="getMatcheDetails(marketId_7)">{{EventName_7}}</a>
+                    <small class="in-play-content" *ngIf="inPlay_7">
+                      <i class="fa fa-play-circle">In-Play</i>
+                    </small>
+                    <small class="FirstSmall"><time class="eventDate" *ngIf="!inPlay_7">25/11/2019 05:00</time></small>
+                  </td>                    
+                  <td  class="back" id="td_7_1" (click)="addBetSlip('back',backBetPrice_7_1,marketId_7)">
+                    {{backBetPrice_7_1}}<br><span *ngIf="sizeDisplay">{{backBetSize_7_1}}</span>
+                  </td>
+                  <td  class="lay" id="td_7_2" (click)="addBetSlip('lay',layBetPrice_7_1,marketId_7)">
+                    {{layBetPrice_7_1}}<br><span *ngIf="sizeDisplay">{{layBetSize_7_1}}</span>
+                  </td>
+                  <td  class="back" id="td_7_3" (click)="addBetSlip('back',backBetPrice_7_2,marketId_7)">
+                    {{backBetPrice_7_2}}<br><span *ngIf="sizeDisplay">{{backBetSize_7_2}}</span>
+                  </td>
+                  <td  class="lay" id="td_7_4" (click)="addBetSlip('back',layBetPrice_7_2,marketId_7)">
+                    {{layBetPrice_7_2}}<br><span *ngIf="sizeDisplay">{{layBetSize_7_2}}</span>
+                  </td>
+                  <td  class="back" id="td_7_5" (click)="addBetSlip('back',backBetPrice_7_3,marketId_7)">
+                    {{backBetPrice_7_3}}<br><span *ngIf="sizeDisplay">{{backBetSize_7_3}}</span>
+                  </td>
+                  <td  class="lay" id="td_7_6" (click)="addBetSlip('back',layBetPrice_7_3,marketId_7)">
+                    {{layBetPrice_7_3}}<br><span *ngIf="sizeDisplay">{{layBetSize_7_3}}</span>
+                  </td>
+                </tr>
+                <tr *ngIf="EventName_8!=='0'" role="row" id="tr_8">
+                  <td class="evnetFirsttd" id="td_8_0">
+                    <a class="eventA" (click)="getMatcheDetails(marketId_8)">{{EventName_8}}</a>
+                    <small class="in-play-content" *ngIf="inPlay_8">
+                      <i class="fa fa-play-circle">In-Play</i>
+                    </small>
+                    <small class="FirstSmall"><time class="eventDate" *ngIf="!inPlay_8">25/11/2019 05:00</time></small>
+                  </td>                    
+                  <td  class="back" id="td_8_1" (click)="addBetSlip('back',backBetPrice_8_1,marketId_8)">
+                    {{backBetPrice_8_1}}<br><span *ngIf="sizeDisplay"> {{backBeSizee_8_1}}</span>
+                  </td>
+                  <td  class="lay" id="td_8_2" (click)="addBetSlip('lay',layBetPrice_8_1,marketId_8)">
+                    {{layBetPrice_8_1}}<br><span *ngIf="sizeDisplay">  {{layBeSizee_8_1}}</span>
+                  </td>
+                  <td  class="back" id="td_8_3" (click)="addBetSlip('back',backBetPrice_8_2,marketId_8)">
+                    {{backBetPrice_8_2}}<br><span *ngIf="sizeDisplay"> {{backBeSizee_8_2}}</span>
+                  </td>
+                  <td  class="lay" id="td_8_4" (click)="addBetSlip('back',layBetPrice_8_2,marketId_8)">
+                    {{layBetPrice_8_2}}<br><span *ngIf="sizeDisplay">  {{layBeSizee_8_2}}</span>
+                  </td>
+                  <td  class="back" id="td_8_5" (click)="addBetSlip('back',backBetPrice_8_3,marketId_8)">
+                    {{backBetPrice_8_3}}<br><span *ngIf="sizeDisplay"> {{backBeSizee_8_3}}</span>
+                  </td>
+                  <td  class="lay" id="td_8_6" (click)="addBetSlip('back',layBetPrice_8_3,marketId_8)">
+                    {{layBetPrice_8_3}}<br><span *ngIf="sizeDisplay">  {{layBeSizee_8_3}}</span>
+                  </td>
+                </tr>
+                <tr *ngIf="EventName_9!=='0'" role="row" id="tr_9">
+                  <td class="evnetFirsttd" id="td_9_0">
+                    <a class="eventA" (click)="getMatcheDetails(marketId_9)">{{EventName_9}}</a>
+                    <small class="in-play-content" *ngIf="inPlay_9">
+                      <i class="fa fa-play-circle">In-Play</i>
+                    </small>
+                    <small class="FirstSmall"><time class="eventDate" *ngIf="!inPlay_9">25/11/2019 05:00</time></small>
+                  </td>                    
+                  <td  class="back" id="td_9_1" (click)="addBetSlip('back',backBetPrice_9_1,marketId_9)">
+                    {{backBetPrice_9_1}}<br><span *ngIf="sizeDisplay"> {{backBeSizee_9_1}}</span>
+                  </td>
+                  <td  class="lay" id="td_9_2" (click)="addBetSlip('lay',layBetPrice_9_1,marketId_9)">
+                    {{layBetPrice_9_1}}<br><span *ngIf="sizeDisplay">  {{layBeSizee_9_1}}</span>
+                  </td>
+                  <td  class="back" id="td_9_3" (click)="addBetSlip('back',backBetPrice_9_2,marketId_9)">
+                    {{backBetPrice_9_2}}<br><span *ngIf="sizeDisplay"> {{backBeSizee_9_2}}</span>
+                  </td>
+                  <td  class="lay" id="td_9_4" (click)="addBetSlip('back',layBetPrice_9_2,marketId_9)">
+                    {{layBetPrice_9_2}}<br><span *ngIf="sizeDisplay">  {{layBeSizee_9_2}}</span>
+                  </td>
+                  <td  class="back" id="td_9_5" (click)="addBetSlip('back',backBetPrice_9_3,marketId_9)">
+                    {{backBetPrice_9_3}}<br><span *ngIf="sizeDisplay"> {{backBeSizee_9_3}}</span>
+                  </td>
+                  <td  class="lay" id="td_9_6" (click)="addBetSlip('back',layBetPrice_9_3,marketId_9)">
+                    {{layBetPrice_9_3}}<br><span *ngIf="sizeDisplay">  {{layBeSizee_9_3}}</span>
+                  </td>
+                </tr>
+                <tr *ngIf="EventName_10!=='0'" role="row" id="tr_10">
+                  <td class="evnetFirsttd" id="td_10_0">
+                    <a class="eventA" (click)="getMatcheDetails(marketId_10)">{{EventName_10}}</a>
+                    <small class="in-play-content" *ngIf="inPlay_10">
+                      <i class="fa fa-play-circle">In-Play</i>
+                    </small>
+                    <small class="FirstSmall"><time class="eventDate" *ngIf="!inPlay_10">25/11/2019 05:00</time></small>
+                  </td>                    
+                  <td  class="back" id="td_10_1" (click)="addBetSlip('back',backBetPrice_10_1,marketId_10)">
+                    {{backBetPrice_10_1}}<br><span *ngIf="sizeDisplay">{{backBetSize_10_1}}</span>
+                  </td>
+                  <td  class="lay" id="td_10_2" (click)="addBetSlip('lay',layBetPrice_10_1,marketId_10)">
+                    {{layBetPrice_10_1}}<br><span *ngIf="sizeDisplay"> {{layBetSize_10_1}}</span>
+                  </td>
+                  <td  class="back" id="td_10_3" (click)="addBetSlip('back',backBetPrice_10_2,marketId_10)">
+                    {{backBetPrice_10_2}}<br><span *ngIf="sizeDisplay">{{backBetSize_10_2}}</span>
+                  </td>
+                  <td  class="lay" id="td_10_4" (click)="addBetSlip('back',layBetPrice_10_2,marketId_10)">
+                    {{layBetPrice_10_2}}<br><span *ngIf="sizeDisplay"> {{layBetSize_10_2}}</span>
+                  </td>
+                  <td  class="back" id="td_10_5" (click)="addBetSlip('back',backBetPrice_10_3,marketId_10)">
+                    {{backBetPrice_10_3}}<br><span *ngIf="sizeDisplay">{{backBetSize_10_3}}</span>
+                  </td>
+                  <td  class="lay" id="td_10_6" (click)="addBetSlip('back',layBetPrice_10_3,marketId_10)">
+                    {{layBetPrice_10_3}}<br><span *ngIf="sizeDisplay"> {{layBetSize_10_3}}</span>
+                  </td>
+                </tr>
+                <tr *ngIf="EventName_11!=='0'" role="row" id="tr_11">
+                  <td class="evnetFirsttd" id="td_11_0">
+                    <a class="eventA" (click)="getMatcheDetails(marketId_11)">{{EventName_11}}</a>
+                    <small class="in-play-content" *ngIf="inPlay_11">
+                      <i class="fa fa-play-circle">In-Play</i>
+                    </small>
+                    <small class="FirstSmall"><time class="eventDate" *ngIf="!inPlay_11">25/11/2019 05:00</time></small>
+                  </td>                    
+                  <td  class="back" id="td_11_1" (click)="addBetSlip('back',backBetPrice_11_1,marketId_11)">
+                    {{backBetPrice_11_1}}<br><span *ngIf="sizeDisplay">{{backBetSize_11_1}}</span>
+                  </td>
+                  <td  class="lay" id="td_11_2" (click)="addBetSlip('lay',layBetPrice_11_1,marketId_11)">
+                    {{layBetPrice_11_1}}<br><span *ngIf="sizeDisplay"> {{layBetSize_11_1}}</span>
+                  </td>
+                  <td  class="back" id="td_11_3" (click)="addBetSlip('back',backBetPrice_11_2,marketId_11)">
+                    {{backBetPrice_11_2}}<br><span *ngIf="sizeDisplay">{{backBetSize_11_2}}</span>
+                  </td>
+                  <td  class="lay" id="td_11_4" (click)="addBetSlip('back',layBetPrice_11_2,marketId_11)">
+                    {{layBetPrice_11_2}}<br><span *ngIf="sizeDisplay"> {{layBetSize_11_2}}</span>
+                  </td>
+                  <td  class="back" id="td_11_5" (click)="addBetSlip('back',backBetPrice_11_3,marketId_11)">
+                    {{backBetPrice_11_3}}<br><span *ngIf="sizeDisplay">{{backBetSize_11_3}}</span>
+                  </td>
+                  <td  class="lay" id="td_11_6" (click)="addBetSlip('back',layBetPrice_11_3,marketId_11)">
+                    {{layBetPrice_11_3}}<br><span *ngIf="sizeDisplay"> {{layBetSize_11_3}}</span>
+                  </td>
+                </tr>
+                <tr *ngIf="EventName_12!=='0'" role="row" id="tr_12">
+                  <td class="evnetFirsttd" id="td_12_0">
+                    <a class="eventA" (click)="getMatcheDetails(marketId_12)">{{EventName_12}}</a>
+                    <small class="in-play-content" *ngIf="inPlay_12">
+                      <i class="fa fa-play-circle">In-Play</i>
+                    </small>
+                    <small class="FirstSmall"><time class="eventDate" *ngIf="!inPlay_12">25/11/2019 05:00</time></small>
+                  </td>                    
+                  <td  class="back" id="td_12_1" (click)="addBetSlip('back',backBetPrice_12_1,marketId_12)">
+                    {{backBetPrice_12_1}}<br><span *ngIf="sizeDisplay">{{backBetSize_12_1}}</span>
+                  </td>
+                  <td  class="lay" id="td_12_2" (click)="addBetSlip('lay',layBetPrice_12_1,marketId_12)">
+                    {{layBetPrice_12_1}}<br><span *ngIf="sizeDisplay"> {{layBetSize_12_1}}</span>
+                  </td>
+                  <td  class="back" id="td_12_3" (click)="addBetSlip('back',backBetPrice_12_2,marketId_12)">
+                    {{backBetPrice_12_2}}<br><span *ngIf="sizeDisplay">{{backBetSize_12_2}}</span>
+                  </td>
+                  <td  class="lay" id="td_12_4" (click)="addBetSlip('back',layBetPrice_12_2,marketId_12)">
+                    {{layBetPrice_12_2}}<br><span *ngIf="sizeDisplay"> {{layBetSize_12_2}}</span>
+                  </td>
+                  <td  class="back" id="td_12_5" (click)="addBetSlip('back',backBetPrice_12_3,marketId_12)">
+                    {{backBetPrice_12_3}}<br><span *ngIf="sizeDisplay">{{backBetSize_12_3}}</span>
+                  </td>
+                  <td  class="lay" id="td_12_6" (click)="addBetSlip('back',layBetPrice_12_3,marketId_12)">
+                    {{layBetPrice_12_3}}<br><span *ngIf="sizeDisplay"> {{layBetSize_12_3}}</span>
+                  </td>
+                </tr>
+                <tr *ngIf="EventName_13!=='0'" role="row" id="tr_13">
+                  <td class="evnetFirsttd" id="td_13_0">
+                    <a class="eventA" (click)="getMatcheDetails(marketId_13)">{{EventName_13}}</a>
+                    <small class="in-play-content" *ngIf="inPlay_13">
+                      <i class="fa fa-play-circle">In-Play</i>
+                    </small>
+                    <small class="FirstSmall"><time class="eventDate" *ngIf="!inPlay_13">25/11/2019 05:00</time></small>
+                  </td>                    
+                  <td  class="back" id="td_13_1" (click)="addBetSlip('back',backBetPrice_13_1,marketId_13)">
+                    {{backBetPrice_13_1}}<br><span *ngIf="sizeDisplay">{{backBetSize_13_1}}</span>
+                  </td>
+                  <td  class="lay" id="td_13_2" (click)="addBetSlip('lay',layBetPrice_13_1,marketId_13)">
+                    {{layBetPrice_13_1}}<br><span *ngIf="sizeDisplay"> {{layBetSize_13_1}}</span>
+                  </td>
+                  <td  class="back" id="td_13_3" (click)="addBetSlip('back',backBetPrice_13_2,marketId_13)">
+                    {{backBetPrice_13_2}}<br><span *ngIf="sizeDisplay">{{backBetSize_13_2}}</span>
+                  </td>
+                  <td  class="lay" id="td_13_4" (click)="addBetSlip('back',layBetPrice_13_2,marketId_13)">
+                    {{layBetPrice_13_2}}<br><span *ngIf="sizeDisplay"> {{layBetSize_13_2}}</span>
+                  </td>
+                  <td  class="back" id="td_13_5" (click)="addBetSlip('back',backBetPrice_13_3,marketId_13)">
+                    {{backBetPrice_13_3}}<br><span *ngIf="sizeDisplay">{{backBetSize_13_3}}</span>
+                  </td>
+                  <td  class="lay" id="td_13_6" (click)="addBetSlip('back',layBetPrice_13_3,marketId_13)">
+                    {{layBetPrice_13_3}}<br><span *ngIf="sizeDisplay"> {{layBetSize_13_3}}</span>
+                  </td>
+                </tr>
+                <tr *ngIf="EventName_14!=='0'" role="row" id="tr_14">
+                  <td class="evnetFirsttd" id="td_14_0">
+                    <a class="eventA" (click)="getMatcheDetails(marketId_14)">{{EventName_14}}</a>
                     <small class="in-play-content" *ngIf="inPlay_14">
                       <i class="fa fa-play-circle">In-Play</i>
                     </small>
