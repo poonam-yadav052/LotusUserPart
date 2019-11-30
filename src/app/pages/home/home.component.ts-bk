@@ -1,0 +1,251 @@
+import { Component, OnInit } from '@angular/core';
+//import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
+import { FormBuilder, FormGroup ,Validators} from '@angular/forms';
+import { HttpClient } from "@angular/common/http";
+import { NgxSpinnerService } from 'ngx-spinner';
+import { UploadFileService } from '../../upload-file.service';
+import { Router } from '@angular/router';
+import { timer, of, Observable, Subject } from 'rxjs';
+import { switchMap, takeUntil, catchError } from 'rxjs/operators';
+import 'rxjs/add/operator/takeWhile';
+import 'rxjs/add/observable/timer'
+
+@Component({
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css']
+})
+export class HomeComponent implements OnInit {
+  EventTypeName = [
+    {"0":"Favourites"},
+    {"1":"Sports"},
+    {"2":"Cricket"},
+    {"3":"Football"},
+    {"4":"Horse Racing"},
+    {"5":"Greyhound Racing"}];
+  betSlipForm:FormGroup;
+  eventNameArr:any = [];
+  activeTab = 'betSlip';
+  isActive = true;
+  betSlipError = false;
+  betONOFF = true;
+  betSlip:boolean = true;
+  openBets:boolean = false;
+  Back:boolean = true;
+  Lay:boolean = false;
+  price = "";
+  stake = "";
+  stateFocus:boolean = false;
+  runners:any = [];
+  sizeDisplay:boolean = false;
+  alive = true;
+  stake1:number = 0;
+  stake2:number = 0;
+  stake3:number = 0;
+  stake4:number = 0;
+  stake5:number = 0;
+  stake6:number = 0;
+  availableCredit:any = 0.00; 
+  addBetSlipResult:any = [];
+  oneClickStatus:boolean = false;  
+  MarketID = "";
+  inPlay = "";
+  selectionId = "";
+  betConfrimation:boolean = false;
+  betType = "";
+  userId = localStorage.getItem('userId');  
+  constructor(private http: HttpClient,private formbuilder:FormBuilder,private fileuploadservice:UploadFileService,private router:Router,private spinner:NgxSpinnerService,) { 
+    this.betSlipForm = this.formbuilder.group({
+      stake: ['',[Validators.required]],
+      odds: ['',[Validators.required]],
+      oneClick: ['',[]],
+      marketId:['',[]],
+      matchId:['',[]],
+      inPlay:['',[]],
+      betType:['',[]],
+      createdBy:['',[]],
+      betConfrimation:['',[]],
+    });
+  }
+
+  switchTab(value) {
+    //alert(value);
+    this.betType =value;
+    this.activeTab = value; 
+    if(value=='betSlip'){
+      this.betSlip = true;
+      this.openBets = false;
+      this.betONOFF = true;  
+    }
+    if(value=='openBets'){
+      this.betSlip = false;
+      this.openBets = true;
+      this.betONOFF = false;  
+    }     
+  }
+
+  addBetSlip(value,price,MarketID,inPlay,selectionId) {
+    this.isActive = false;
+    if(price<=0)
+      this.price = '';
+    else
+      this.price = price;
+    console.log("value=="+value);    
+    if(value=="back"){
+      this.Back = true;
+      this.Lay = false;
+    }
+    if(value=="lay"){
+      this.Back = false;
+      this.Lay = true;
+    }   
+    this.inPlay = inPlay;
+    this.MarketID = MarketID;
+    this.selectionId = selectionId;
+  }
+
+  onFocusEvent(event) { 
+    this.stateFocus = true;
+  }
+
+  onFocusOutEvent(event) {
+    this.stateFocus = false;
+  }
+
+  addStake(stakeValue,event) {    
+    event.preventDefault();
+    if(stakeValue=='max'){
+      this.stateFocus = true;
+      this.stake = this.availableCredit;
+    }else if(stakeValue=='0'){
+      this.stateFocus = false;
+      this.stake = "";
+    }else{
+      this.stateFocus = true;
+      this.stake = stakeValue;
+    }
+  }
+
+  getMatches(matches) {
+    this.sizeDisplay = true;
+    this.alive = false;
+    this.eventNameArr = [];
+    this.http.get('http://pragati777.com/AllOpenMarketIDs').subscribe((data:any) => {
+        for (let prop of data) {
+          if(prop.EventTypeName===matches){            
+            this.http.get('http://115.124.103.128:5105/getFeed?mid='+prop.MarketID+'&type=odds').subscribe((inPlayData:any) => {
+              if(inPlayData!==null)
+              {               
+                prop['inPlay'] = inPlayData.inPlay;  
+                if(inPlayData.runners.length==2){     
+                  prop['runners'] = inPlayData.runners;
+                  prop['runners'][2] = {"lastPriceTraded":"","selectionId":"","id":"","nation":"Afghanistan","handicap":0,"status":"ACTIVE","back":[{"price":"-","size":""},{"price":"-","size":""},{"price":"-","size":""}],"lay":[{"price":"-","size":""},{"price":"-","size":""},{"price":"-","size":""}]};                  
+                }else{
+                  prop['runners'] = inPlayData.runners;     
+                }                
+              }
+              else 
+                {
+                  prop['inPlay'] = false;
+                  prop['runners'] = [{"lastPriceTraded":"","selectionId":"","id":"","nation":"Afghanistan","handicap":0,"status":"ACTIVE","back":[{"price":"-","size":""},{"price":"-","size":""},{"price":"-","size":""}],"lay":[{"price":"-","size":""},{"price":"-","size":""},{"price":"-","size":""}]},{"lastPriceTraded":"","selectionId":"","id":"","nation":"Afghanistan","handicap":0,"status":"ACTIVE","back":[{"price":"-","size":""},{"price":"-","size":""},{"price":"-","size":""}],"lay":[{"price":"-","size":""},{"price":"-","size":""},{"price":"-","size":""}]},{"lastPriceTraded":"","selectionId":"","id":"","nation":"Afghanistan","handicap":0,"status":"ACTIVE","back":[{"price":"-","size":""},{"price":"-","size":""},{"price":"-","size":""}],"lay":[{"price":"-","size":""},{"price":"-","size":""},{"price":"-","size":""}]}];
+                }               
+                this.eventNameArr.push(prop);               
+            });
+          }
+        }
+    });
+  }
+  
+  getOneClickStatus(e) {
+    //alert(e.target.checked);
+    this.oneClickStatus = e.target.checked;;
+    localStorage.setItem("oneClickStatus",e.target.checked); 
+  }
+
+  getBetConfrimation(e) {
+    this.betConfrimation = e.target.checked;;
+    localStorage.setItem("betConfrimation",e.target.checked); 
+  }
+  get f() {return this.betSlipForm.controls}
+
+  onSubmit(betData) {
+    console.log("betData==="+JSON.stringify(betData));
+    console.log("input odds==="+JSON.stringify(this.f.odds.value));
+    console.log("input stake==="+JSON.stringify(this.f.stake.value));
+    console.log("user==="+JSON.stringify(this.userId));
+    if (this.betSlipForm.invalid) {
+        return;
+    }
+    this.spinner.show();
+    //this.spinner.hide();
+      
+    let data: any = Object.assign(this.betSlipForm.value);
+    this.fileuploadservice.addBetSlip(data,this.userId).subscribe(
+       data=>{  
+        console.log("Success")
+        console.log("add bet slip data===="+JSON.stringify(data));
+        this.spinner.hide();
+       },
+         error=>{
+           this.spinner.hide();
+           console.log("Bet slip adding fail")
+           console.log(error)
+           this.addBetSlipResult="Bet slip adding fail. Please try again";
+         });
+  }
+  ngOnInit() {
+    let loclOneClckSts = localStorage.getItem("oneClickStatus");
+    if(loclOneClckSts!="" && loclOneClckSts!=null){
+      let checkS = localStorage.getItem("oneClickStatus");
+      this.oneClickStatus = JSON.parse(checkS);
+    }
+    let betConfrm = localStorage.getItem("betConfrimation");
+    if(betConfrm!="" && betConfrm!=null){
+      let checkS = localStorage.getItem("betConfrimation");
+      this.betConfrimation = JSON.parse(checkS);
+    }
+    //this.oneClickStatus = value; 
+    this.sizeDisplay = false;
+    //  Observable.timer(0,3000)
+    //  .takeWhile(() => this.alive) // only fires when component is alive
+    //  .subscribe(() => {
+      this.eventNameArr = [];
+      this.http.get('http://pragati777.com/AllOpenMarketIDs').subscribe((data:any) => {
+          for (let prop of data) {
+            if(prop.EventTypeName==="Cricket"){            
+              this.http.get('http://115.124.103.128:5105/getFeed?mid='+prop.MarketID+'&type=odds').subscribe((inPlayData:any) => {
+                if(inPlayData!==null)
+                {              
+                  prop['inPlay'] = inPlayData.inPlay;  
+                  if(inPlayData.numberOfActiveRunners==2){     
+                    prop['runners'] = inPlayData.runners;
+                    prop['runners'][2] = {"lastPriceTraded":"","selectionId":"","id":"","nation":"Afghanistan","handicap":0,"status":"ACTIVE","back":[{"price":"-","size":""},{"price":"-","size":""},{"price":"-","size":""}],"lay":[{"price":"-","size":""},{"price":"-","size":""},{"price":"-","size":""}]};                
+                  }else{
+                    prop['runners'] = inPlayData.runners;     
+                  }                
+                }
+                else 
+                  {
+                    prop['inPlay'] = false;
+                    prop['runners'] = [{"lastPriceTraded":"","selectionId":"","id":"","nation":"Afghanistan","handicap":0,"status":"ACTIVE","back":[{"price":"-","size":""},{"price":"-","size":""},{"price":"-","size":""}],"lay":[{"price":"-","size":""},{"price":"-","size":""},{"price":"-","size":""}]},{"lastPriceTraded":"","selectionId":"","id":"","nation":"Afghanistan","handicap":0,"status":"ACTIVE","back":[{"price":"-","size":""},{"price":"-","size":""},{"price":"-","size":""}],"lay":[{"price":"-","size":""},{"price":"-","size":""},{"price":"-","size":""}]},{"lastPriceTraded":"","selectionId":"","id":"","nation":"Afghanistan","handicap":0,"status":"ACTIVE","back":[{"price":"-","size":""},{"price":"-","size":""},{"price":"-","size":""}],"lay":[{"price":"-","size":""},{"price":"-","size":""},{"price":"-","size":""}]}];
+                  }               
+                  this.eventNameArr.push(prop);         
+              });
+            }
+          }
+      });
+      
+      this.http.get('/matieres/getStakes?userId='+this.userId).subscribe((data:any) => {
+         console.log("data==="+JSON.stringify(data.result[0].stake));
+         let data_array = JSON.parse(data.result[0].stake);
+         console.log(""+data_array[0]);         
+          this.stake1 = data_array[0];
+          this.stake2 = data_array[1];
+          this.stake3 = data_array[2];
+          this.stake4 = data_array[3];
+          this.stake5 = data_array[4];
+          this.stake6 = data_array[5];
+      });
+    //});
+  }
+}

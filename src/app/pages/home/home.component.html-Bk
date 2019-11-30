@@ -1,0 +1,261 @@
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper boxed-layout-wrapper">
+    <!-- left-pane -->
+    <div class="left-pane">
+      <nav class="menu">
+        <ul>
+          <li *ngFor="let data of EventTypeName;let i = index">
+            <a class="favouritesLink" *ngIf="data[i]!=='Sports'?'hide':''" (click)="getMatches(data[i])">
+              <i class="fa fa-star-o link-icon"></i>              
+              <span class="linkName">{{data[i]}}</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- mid oane -->
+    <div class="mid-pane">
+      <div class="Eventdiv">
+          <h1 class="eventHeader">Cricket</h1>          
+          <div class="EventName" >
+            <table class="table table-border marketListingTable">
+              <thead class="eventTHead">
+                <th class="eventFirstTh">Match</th>
+                <th colspan="2">1</th>  
+                <th colspan="2">X</th>
+                <th colspan="2">2</th>
+              </thead>
+              <tbody class="eventBody">
+                <tr *ngFor="let data of eventNameArr; let i = index" role="row">
+                  <td class="evnetFirsttd">
+                    <a class="eventA">{{data.EventName}}</a>
+                    <small class="in-play-content" *ngIf="data.inPlay">
+                      <i class="fa fa-play-circle">In-Play</i>
+                    </small>
+                    <small class="FirstSmall"><time class="eventDate" *ngIf="!data.inPlay">25/11/2019 05:00</time></small>
+                  </td>                    
+                  <td  class="back" (click)="addBetSlip('back',data.runners[0].back[0].price,data.MarketID,data.inPlay,data.runners[0].selectionId)">
+                    {{data.runners[0].back[0].price}}<br><span *ngIf="sizeDisplay">{{data.runners[0].back[0].size}}</span>
+                  </td>
+                  <td  class="lay" (click)="addBetSlip('lay',data.runners[0].lay[0].price,data.MarketID,data.inPlay,data.runners[0].selectionId)">
+                    {{data.runners[0].lay[0].price}}<br><span *ngIf="sizeDisplay">{{data.runners[0].back[0].size}}</span>
+                  </td>
+                  <td  class="back" (click)="addBetSlip('back',data.runners[1].back[0].price,data.MarketID,data.inPlay,data.runners[0].selectionId)">
+                    {{data.runners[1].back[0].price}}<br><span *ngIf="sizeDisplay">{{data.runners[1].back[0].size}}</span>
+                  </td>
+                  <td  class="lay" (click)="addBetSlip('back',data.runners[1].lay[0].price,data.MarketID,data.inPlay,data.runners[0].selectionId)">
+                    {{data.runners[1].lay[0].price}}<br><span *ngIf="sizeDisplay">{{data.runners[1].lay[0].size}}</span>
+                  </td>
+                  <td  class="back" (click)="addBetSlip('back',data.runners[2].back[0].price,data.MarketID,data.inPlay,data.runners[0].selectionId)">
+                    {{data.runners[2].back[0].price}}<br><span *ngIf="sizeDisplay">{{data.runners[2].back[0].size}}</span>
+                  </td>
+                  <td  class="lay" (click)="addBetSlip('back',data.runners[2].lay[0].price,data.MarketID,data.inPlay,data.runners[0].selectionId)">
+                    {{data.runners[2].lay[0].price}}<br><span *ngIf="sizeDisplay">{{data.runners[2].lay[0].size}}</span>
+                  </td>
+                  <!-- <td class="lay" (click)="addBetSlip('lay','2.00')">2.00</td>
+                  <td class="back" (click)="addBetSlip('back','1.00')" >1.00</td>
+                  <td class="lay" (click)="addBetSlip('lay','1.00')">1.00</td>
+                  <td class="back" (click)="addBetSlip('back','1.23')">1.23</td>
+                  <td class="lay" (click)="addBetSlip('lay','1.23')">1.23</td> -->
+                </tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+    </div>
+    <!-- /.right pane -->
+    <div class="right-pane">
+        <div class="available-credit">
+          <div class="available-credit-title">
+            <span>Available Credit : 300.00</span>
+            <i class="fa fa fa-angle-down availableCredit-icon"></i> 
+          </div>
+        </div>
+        <div class="right-pane-placeholder"></div>
+        <div class="inner-right-pane">
+          <div class="userSettings">
+              <div class="oneClickSetting-wrapper">
+                  <div class="onoffswitch">
+                    <div class="onoffswitchWrapper">
+                        <input type="checkbox" name="myonoffswitch" (click)="getOneClickStatus($event)" class="onoffswitch-checkbox" id="myonoffswitch" [checked] = "oneClickStatus">
+                        <label class="onoffswitch-label" for="myonoffswitch">
+                            <span class="onoffswitch-inner"></span>
+                            <span class="onoffswitch-switch"></span>
+                        </label>
+                    </div>
+                    <button class="canceButton">Cancel</button>
+                    <div class="oneClickSettingAnimation">
+                          <strong class="oneClickSettingTitle">1 Click Betting</strong>
+                        <div class="oneClickSettingForm">
+                          <div class="selectFields">  
+                            <ul class="settingsList">
+                              <li class=""><button class="btn btn-sm">50</button></li>
+                              <li class=""><button class="btn btn-sm">1</button></li>
+                              <li class=""><button class="btn btn-sm">0</button></li>
+                              <li class=""><button class="btn btn-sm">Edit</button></li>                          
+                            </ul>
+                          </div>
+                        </div>
+                    </div>
+                  </div>                  
+              </div>
+          </div>
+          <div class="betManager">
+            <h4 class="betManagerTitle">Betslip</h4>
+            <ul class="tabs">
+              <!-- {{activeTab}} -->
+              <li class="tab-bet-slip -active" [ngClass]="{'-active': betSlip , '': openBets}">
+                <a class="" (click)="switchTab('betSlip')">
+                    Betslip
+                </a>
+              </li>
+              <li class="tab-open-bet" [ngClass]="{'-active': openBets, '': betSlip}" >
+                <a class="" (click)="switchTab('openBets')">
+                  Open Bets
+                </a>
+              </li>
+              <li>
+                <button class="btn btn-primary editStateButton" (click)="editStake()">Edit Stake</button>
+              </li>
+            </ul>
+            <div *ngIf="!betONOFF" class="bets-by-event-filter">
+              <label>
+                <input type="checkbox" name="showBetInfo" />
+                Show bet Info
+              </label>
+            </div>
+            <ul class="content">
+              <!-- bet Slip -->
+              <li *ngIf="betONOFF" class="tabBetslip">
+                <div class="bets betslip">
+                  <div class="isActive">
+                    <p *ngIf="isActive" class="emptyListInfo">Click on the odds to add selections to the betslip.</p>
+                    <div *ngIf="!isActive" class="betInfo">
+                      <div class="betSlipContent">
+                        <form [formGroup]="betSlipForm" class="betSlipForm" (ngSubmit)="onSubmit(betSlipForm.value)">
+                          <input type="hidden" formControlName= "oneClick" name= "oneClick" id= "oneClick" [value]="oneClickStatus"/>
+                          <input type="hidden" formControlName= "marketId" name= "marketId" id= "marketId" [value]="marketId" />
+                          <input type="hidden" formControlName= "matchId" name= "matchId" id= "matchId" [value]="matchId"/>
+                          <input type="hidden" formControlName= "inPlay" name= "inPlay" id= "inPlay" [value]="inPlay"/>
+                          <input type="hidden" formControlName= "betType" name= "betType" id= "betType" [value]="betType"/>
+                          <input type="hidden" formControlName= "createdBy" name= "createdBy" id= "createdBy" [value]="userId"/>
+                          <ul *ngIf="betSlipError" class="betSlipError">Error</ul>
+                          <div class="">
+                            <h6 class="betTypeInfo" [ngClass]="{'back': Back, 'lay': Lay}" id="betTypeInfo" translate>Back</h6>
+                            <ul class="marketInfo">
+                              <li class="bets bets1">
+                                <a class="eventName" tabindex="-1">
+                                  <span>Test Event Name</span>
+                                </a>
+                                <div class="bet" [ngClass]="{'back': Back, 'lay': Lay}" id="bet">
+                                  <span>Test</span>
+                                  <div class="betFields">
+                                      <div class="oddsFields placeholder-wrapper ng-isolate-scope activated animatable">
+                                        <div class="placeholder">Odds</div>
+                                        <div class="step-input-wrapper ng-isolate-scope">
+                                          <input type="text" formControlName= "odds" name="odds"  id="odds" class="step-input" [value]="price"/>
+                                          <div class="button-wrapper">
+                                            <button class="step-up" tabindex="-1">
+                                              <i class="fa fa-angle-up"></i>
+                                            </button>
+                                            <button class="step-down"  tabindex="-1">
+                                              <i class="fa fa-angle-down"></i>
+                                            </button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="betslip__input placeholder-wrapper ng-isolate-scope animatable" [ngClass]="{'activated': stateFocus, '': !stateFocus}"  >
+                                        <div class="placeholder">Stake</div>
+                                        <div>
+                                          <input formControlName= "stake" type="text" id="stake" name="stake" (focusout)="onFocusOutEvent($event)" (focus)="onFocusEvent($event)" class="stake" placeholder=""  [value]="stake"/>
+                                        </div>
+                                      </div>
+                                      <div class="info-field">
+                                        <span class="title ">Profit</span>
+                                        <span class="value">0.00</span>
+                                      </div>
+                                      <div class="control-fields">
+                                        <button class="buttonRemove">
+                                          <i class="fa fa-remove"></i>
+                                        </button>
+                                      </div>
+                                  </div>
+                                  <div class="six-stakes " [ngClass]="{'back': Back, 'lay': Lay}">
+                                    <div class="first-row">
+                                      <button class="firstRowButton" (click)="addStake(stake1,$event)">+{{stake1}}</button>
+                                      <button class="firstRowButton" (click)="addStake(stake2,$event)">+{{stake2}}</button>
+                                      <button class="firstRowButton" (click)="addStake(stake3,$event)">+{{stake3}}</button>
+                                      <button class="firstRowButton" (click)="addStake('max',$event)">MAX</button>
+                                    </div>
+                                    <div class="second-row">
+                                        <button class="secondRowButton" (click)="addStake(stake4,$event)">+{{stake4}}</button>
+                                        <button class="secondRowButton" (click)="addStake(stake5,$event)">+{{stake5}}</button>
+                                        <button class="secondRowButton" (click)="addStake(stake6,$event)">+{{stake6}}</button>
+                                        <button class="clearRowButton secondRowButton" (click)="addStake('0',$event)">Clear</button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </li>
+                            </ul>
+                          </div>
+                          <p class="summary-info">Liability: 0.00</p>
+                          <div class="summary-buttons _align-right">
+                            <button type="submit" class="submitButton"> Place bets</button>
+                            <button type="button" class="removeAll"> Remove All</button>
+                          </div>
+                          <label class="confirmation-checkbox">
+                            <input type="checkbox" formControlName= "betConfrimation" name="betConfrimation" id="betConfrimation" (click)="getBetConfrimation($event)" [checked]="betConfrimation"/>
+                            Confirm bets before placing
+                          </label>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+              <!-- open bet -->
+              <li *ngIf="!betONOFF" class="content-open-bets">
+                <div class="bets unmatched-bets">
+                  <div class="overlay">
+                    <div class="loader"></div>
+                    <div class="toggleable-list-title">
+                      <span>
+                        Unmatched Bets
+                      </span>
+                      <i class="fa fa-angle-down unmatchedIconDown" ></i>
+                      <i class="fa fa-angle-up unmatchedIconUp hide" ></i>
+                    </div>
+                    <div class="list-wrap">
+                      <form class="openBet-form">
+                        <p class="emptyIistInfo">You have no unmatched bets</p>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+                <div class="matched-bets">
+                    <div class="overlay">
+                      <div class="loader"></div>
+                      <div class="toggleable-list-title">
+                        <span>
+                          Matched Bets
+                        </span>
+                        <i class="fa fa-angle-down unmatchedIconDown" ></i>
+                        <i class="fa fa-angle-up unmatchedIconUp hide" ></i>
+                      </div>
+                      <div class="list-wrap">
+                        <form class="openBet-form">
+                          <p class="emptyIistInfomatched">You have no Matched bets</p>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+              </li>
+            </ul>
+          </div>
+        </div>  
+    </div>
+  </div>
+  <!-- /.content-wrapper -->
+ 

@@ -1,0 +1,129 @@
+<div class="content-wrapper" style="min-height: 956px;">
+      <!-- Content Header (Page header) -->
+      <section class="content-header">
+         <h1>
+            Upload Vendor Data
+         </h1>
+         <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li class="active">Upload Vendor Data</li>
+         </ol>
+      </section>
+      <div class="row">
+         <div class="col-md-12">{{uploadfileresult}}</div>
+      </div>
+      <!-- Main content -->
+      <section class="content">
+         <div class="row">
+            <!-- right column -->
+            <div class="col-md-12">
+               <!-- Horizontal Form -->
+               <div class="box">
+                  <div class="box-body">
+                     <!-- form start -->
+                     <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit(checkoutForm.value)" class="">
+                     <div class="row">
+                        <div class="form-group col-xs-6">
+                           <label for="uploadfiletype">File type</label>
+                           <select class="form-control"  formControlName="uploadfiletype" [ngClass]="{ 'is-invalid': submitted && f.uploadfiletype.errors }">
+                              <option value="">--select type--</option>
+                              <option value="SAP">SAP</option>
+                              <option value="BPCS">BPCS</option>
+                              <option value="Bank">Bank</option>
+                              <option value="SAP_Vendor">SAP Vendor List</option>
+                              <option value="BPCS_Vendor">BPCS Vendor List</option>
+                           </select>
+                           <div *ngIf="submitted && f.uploadfiletype.errors" class="invalid-feedback">
+                              <div *ngIf="f.uploadfiletype.errors.required">Please select type</div>
+                           </div>
+                        </div>
+                        <div class="form-group col-xs-6">
+                           <label for="fileupload">File</label>
+                           <input class="form-control"  type="file" formControlName="fileupload" (change)="handleFileInput($event.target.files)"/>
+                           <div *ngIf="submitted && f.fileupload.errors" class="invalid-feedback">
+                              <div *ngIf="f.fileupload.errors.required">Please select file</div>
+                           </div>
+                           <div *ngIf="filetypeerror" class="invalid-feedback">
+                              Invalid file type. please select valid file
+                           </div>
+                        </div>
+                     </div>
+                     <div class="row">
+                        <div class="form-group col-xs-12">
+                           <button type="submit" class="btn btn-primary mb-2">Upload File</button>
+                        </div>
+                     </div>
+                     </form>
+                  </div>
+               </div>
+               <!-- /.box -->
+               <div class="box">
+                  <div class="box-header">
+                     <h3 class="box-title">Uploaded History</h3>
+                  </div>
+                  <!-- /.box-header -->
+                  <div class="box-body">
+                     <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                        <div class="row">
+                           <div class="col-sm-6">
+                              <div class="dataTables_length" id="example1_length">
+                                 <label>
+                                    Show 
+                                    <select name="example1_length" [(ngModel)]="itemsPerPage" aria-controls="example1" class="form-control input-sm">
+                                       <option value="10">10</option>
+                                       <option value="25">25</option>
+                                       <option value="50">50</option>
+                                       <option value="100">100</option>
+                                    </select>
+                                    entries
+                                 </label>
+                              </div>
+                           </div>
+                           <div class="col-sm-6">
+                              <div id="example1_filter" class="dataTables_filter"><label>Search:&nbsp;<input type="search" class="form-control input-sm" placeholder="" aria-controls="example1"></label></div>
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-sm-12 table-responsive">
+                              <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                                 <thead>
+                                    <tr role="row">
+                                       <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 182px;">Batch ID</th>
+                                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Browser: activate to sort column ascending" style="width: 224px;">File Name</th>
+                                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Platform(s): activate to sort column ascending" style="width: 199px;">File Type</th>
+                                       <th class="sorting" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-label="Engine version: activate to sort column ascending" style="width: 156px;">Uploaded Date</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <tr *ngFor="let row of uploadeddata | paginate: { itemsPerPage: itemsPerPage, currentPage: p }" role="row" class="odd">
+                                       <td class="sorting_1">{{row.UploadedFilesID}}</td>
+                                       <td>{{row.FileName}}</td>
+                                       <td>{{row.FileType}}</td>
+                                       <td>{{row.UploadedDate}}</td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-sm-5">
+                                 <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">Showing {{(itemsPerPage < uploadeddata.length ? itemsPerPage : uploadeddata.length)}} of {{uploadeddata.length}} entries</div>
+                           </div>
+                           <div class="col-sm-7">
+                              <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+                                 <pagination-controls (pageChange)="p = $event"></pagination-controls>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- /.box-body -->
+               </div>
+               <!-- /.box -->
+            </div>
+            <!--/.col (right) -->
+         </div>
+         <!-- /.row -->
+      </section>
+      <!-- /.content -->
+   </div>
